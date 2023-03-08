@@ -69,7 +69,7 @@ export default function Index() {
 
   // Format currency
   const formatCurrency = (value: number) =>
-    new Intl.NumberFormat("de-DE", {
+    new Intl.NumberFormat(navigator.language, {
       style: "currency",
       currency: "EUR",
     }).format(value);
