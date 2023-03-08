@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:C:\\Users\\Sanel\\Desktop\\alesco-tech-task\\app\\routes\\index.tsx?browser", "../../../app/routes/index.tsx"],
+  "sourcesContent": ["export { default } from \"C:\\\\Users\\\\Sanel\\\\Desktop\\\\alesco-tech-task\\\\app\\\\routes\\\\index.tsx\";", "export default function Index() {\n  return (\n    <>\n      <h1>Alasco HQ: Expense Tracking</h1>\n\n      {/* Display some expenses here :) */}\n    </>\n  );\n}\n"],
+  "mappings": ";;;;;;AAAA;;;ACAA;AAAe,iBAAiB;AAC9B,SACE,0DACE,oCAAC,MAAD,MAAI;AAAA;",
+  "names": []
+}

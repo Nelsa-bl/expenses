@@ -1,0 +1,22 @@
+body {
+  font-family: system-ui, sans-serif;
+  line-height: 1.4;
+}
+
+.icon {
+  --size: 24px;
+
+  display: inline-block;
+  width: var(--size);
+  height: var(--size);
+  background-size: cover;
+  background-image: var(--image);
+}
+
+.icon.star--outline {
+  --image: url("/icons/star-outline.svg");
+}
+
+.icon.star--filled {
+  --image: url("/icons/star-filled.svg");
+}
