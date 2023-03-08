@@ -46,7 +46,6 @@ export default function Index() {
   }, []);
 
   // Calculate the Gross
-  // Calculate the Gross
   const calcGross = (net: string, tax: string) => {
     return Number(net) + Number(tax);
   };
@@ -139,7 +138,9 @@ export default function Index() {
       </div>
 
       {isLoading ? (
-        <p>Loading...</p>
+        <div className="spinner-overlay">
+          <div className="spinner-container"></div>
+        </div>
       ) : (
         <>
           {showFavorites
@@ -156,7 +157,7 @@ export default function Index() {
             </h3>
           )}
 
-          {!showFavorites && (
+          {!showFavorites && expenses.length > 0 && (
             <h3>Total expenses: {formatCurrency(calcTotal)}</h3>
           )}
         </>
