@@ -21,45 +21,43 @@ export default function Index() {
   const [showFavorites, setShowFavorites] = useState<boolean>(false);
 
   // Get API data
-  useEffect(() => {
-    const getExpensesMap = async () => {
-      try {
-        setIsLoading(true);
-        const getExpensesFromAPI = await fetch(API_URL);
-        if (!getExpensesFromAPI.ok) {
-          throw new Error(
-            `Problem getting products. Status: ${getExpensesFromAPI.status}`
-          );
-        }
-        const data = await getExpensesFromAPI.json();
-        setIsLoading(false);
-        setExpenses(data?.items || []);
-      } catch (err) {
-        // If error then show message
-        let message;
-        if (err instanceof Error) message = err.message;
-        else message = String(err);
-        console.error({ message });
+  const getExpensesMap = async () => {
+    try {
+      setIsLoading(true);
+      const getExpensesFromAPI = await fetch(API_URL);
+      if (!getExpensesFromAPI.ok) {
+        throw new Error(
+          `Problem getting products. Status: ${getExpensesFromAPI.status}`
+        );
       }
-    };
+      const data = await getExpensesFromAPI.json();
+      setIsLoading(false);
+      setExpenses(data?.items || []);
+    } catch (err) {
+      // If error then show message
+      let message;
+      if (err instanceof Error) message = err.message;
+      else message = String(err);
+      console.error({ message });
+    }
+  };
+
+  // Call API on load
+  useEffect(() => {
     getExpensesMap();
   }, []);
 
   // Calculate the Gross
-  const calcGross = (net: string, tax: string) => {
-    return Number(net) + Number(tax);
-  };
+  const calcGross = (net: string, tax: string) => Number(net) + Number(tax);
 
-  // Calculate the total expenses
-  const calcTotalExpenses = (expenses: Expense[]) => {
-    return expenses.reduce((sum, expense) => {
-      const gross = Number(expense.net) + Number(expense.tax);
-      const total = sum + gross;
-      return total;
-    }, 0);
-  };
+  // Calculate Total Helper
+  const calcTotalExpenses = (expenses: Expense[]) =>
+    expenses.reduce(
+      (sum, expense) => sum + calcGross(expense.net, expense.tax),
+      0
+    );
 
-  // Get total expenses for all expenses
+  // Get total expenses
   const calcTotal = calcTotalExpenses(expenses);
 
   // Get total expenses for favorites
